@@ -208,5 +208,15 @@ function canSee(light, vision) {
  * @returns {number} damage dealt by the strike
  */
 function getStrikeDamage(attack, ac, damage) {
-  // TODO
+  if (doesStrikeHit(attack, ac) && doesStrikeCrit(attack, ac)) {
+    return damage * 2;
+  } else if (doesStrikeHit(attack, ac)) {
+    return damage;
+  } else {
+    return 0;
+  }
 }
+// testing
+// console.log("getStrikeDamage: " + getStrikeDamage(15, 10, 5)); // Output: 5
+// console.log("getStrikeDamage: " + getStrikeDamage(25, 10, 5)); // Output: 10
+// console.log("getStrikeDamage: " + getStrikeDamage(5, 10, 5)); // Output: 0

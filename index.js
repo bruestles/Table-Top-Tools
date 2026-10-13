@@ -181,8 +181,21 @@ function getRemainingHp(maxHp, currentHp, damage) {
  * @returns {boolean} whether the creature can see
  */
 function canSee(light, vision) {
-  // TODO
+  if (vision === "dark") {
+    return true;
+  } else if (vision === "low-light" && light !== "dark") {
+    return true;
+  } else if (vision === "average" && light === "bright") {
+    return true;
+  } else {
+    return false;
+  }
 }
+// testing
+// console.log("canSee: " + canSee("bright", "average")); // Output: true
+// console.log("canSee: " + canSee("dim", "low-light")); // Output: true
+// console.log("canSee: " + canSee("dark", "dark")); // Output: true
+// console.log("canSee: " + canSee("dim", "average")); // Output: false
 
 /**
  * A strike deals damage if it hits, unless the strike is a critical hit,

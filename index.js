@@ -6,8 +6,16 @@
  * @returns {boolean} whether the wizard can cast the spell
  */
 function canCastSpell(isSpellPrepared, hasScroll) {
-  // TODO
+  if (isSpellPrepared || hasScroll) {
+    return true;
+  } else {
+    return false;
+  }
 }
+// testing
+// console.log(canCastSpell(true, false)); // Output: true
+// console.log(canCastSpell(false, true)); // Output: true
+// console.log(canCastSpell(false, false)); // Output: false
 
 /**
  * A creature is hidden from an observer if it is actively hiding
@@ -17,8 +25,16 @@ function canCastSpell(isSpellPrepared, hasScroll) {
  * @returns {boolean} whether the creature is hidden from the observer
  */
 function isHidden(hiding, aware) {
-  // TODO
+  if (hiding || !aware) {
+    return true;
+  } else {
+    return false;
+  }
 }
+// testing
+// console.log("isHidden: " + isHidden(true, true)); // Output: true
+// console.log("isHidden: " + isHidden(false, false)); // Output: true
+// console.log("isHidden: " +  isHidden(false, true)); // Output: false
 
 /**
  * A strike hits if the attack value is greater than or equal
@@ -28,9 +44,16 @@ function isHidden(hiding, aware) {
  * @returns {boolean} whether the strike hits
  */
 function doesStrikeHit(attack, ac) {
-  // TODO
+  if (attack >= ac) {
+    return true;
+  } else {
+    return false;
+  }
 }
-
+// testing
+// console.log("doesStrikeHit: " + doesStrikeHit(15, 10)); // Output: true
+// console.log("doesStrikeHit: " + doesStrikeHit(10, 10)); // Output: true
+// console.log("doesStrikeHit: " + doesStrikeHit(5, 10)); // Output: false
 /**
  * A strike is a critical hit if the attack value is at least
  * 10 greater than the target's armor class (AC).
@@ -39,8 +62,15 @@ function doesStrikeHit(attack, ac) {
  * @returns {boolean} whether the strike is a critical hit
  */
 function doesStrikeCrit(attack, ac) {
-  // TODO
+  if (attack >= ac + 10) {
+    return true;
+  } else {
+    return false;
+  }
 }
+// testing
+// console.log("doesStrikeCrit: " + doesStrikeCrit(25, 10)); // Output: true
+// console.log("doesStrikeCrit: " + doesStrikeCrit(15, 10)); // Output: false
 
 /**
  * A creature can restore hit points (HP) by healing,
@@ -51,9 +81,17 @@ function doesStrikeCrit(attack, ac) {
  * @returns {number} total hit points after healing
  */
 function heal(maxHp, currentHp, healAmount) {
-  // TODO
+  const newHp = currentHp + healAmount;
+  if (newHp > maxHp) {
+    return maxHp;
+  } else {
+    return newHp;
+  }
 }
-
+// testing
+console.log("heal: " + heal(100, 50, 30)); // Output: 80
+console.log("heal: " + heal(100, 90, 20)); // Output: 100
+console.log("heal: " + heal(100, 100, 10)); // Output: 100
 /**
  * When a character uses a skill they have proficiency in,
  * they get to add a bonus to their attempt.

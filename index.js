@@ -160,9 +160,18 @@ function getCoverBonus(behindObstacle, takingCover) {
  * @returns {number} the creature's remaining HP after taking damage
  */
 function getRemainingHp(maxHp, currentHp, damage) {
-  // TODO
+  if (damage >= maxHp * 2) {
+    return -1;
+  } else if (currentHp - damage <= 0) {
+    return 0;
+  } else {
+    return currentHp - damage;
+  }
 }
-
+// testing
+// console.log("getRemainingHp: " + getRemainingHp(100, 50, 30)); // Output: 20
+// console.log("getRemainingHp: " + getRemainingHp(100, 50, 60)); // Output: 0
+// console.log("getRemainingHp: " + getRemainingHp(100, 50, 200)); // Output: -1
 /**
  * All creatures can see in bright light.
  * Creatures with low-light vision can also see in dim light.

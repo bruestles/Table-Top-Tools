@@ -89,9 +89,9 @@ function heal(maxHp, currentHp, healAmount) {
   }
 }
 // testing
-console.log("heal: " + heal(100, 50, 30)); // Output: 80
-console.log("heal: " + heal(100, 90, 20)); // Output: 100
-console.log("heal: " + heal(100, 100, 10)); // Output: 100
+// console.log("heal: " + heal(100, 50, 30)); // Output: 80
+// console.log("heal: " + heal(100, 90, 20)); // Output: 100
+// console.log("heal: " + heal(100, 100, 10)); // Output: 100
 /**
  * When a character uses a skill they have proficiency in,
  * they get to add a bonus to their attempt.
@@ -109,7 +109,17 @@ console.log("heal: " + heal(100, 100, 10)); // Output: 100
  * @returns {number} the character's proficiency bonus
  */
 function getProficiencyBonus(level, rank) {
-  // TODO
+  if (rank === "untrained") {
+    return 0;
+  } else if (rank === "trained") {
+    return level + 2;
+  } else if (rank === "expert") {
+    return level + 4;
+  } else if (rank === "master") {
+    return level + 6;
+  } else if (rank === "legendary") {
+    return level + 8;
+  }
 }
 
 /**
@@ -123,8 +133,19 @@ function getProficiencyBonus(level, rank) {
  * @returns {number} the cover bonus to AC
  */
 function getCoverBonus(behindObstacle, takingCover) {
-  // TODO
+  if (behindObstacle && takingCover) {
+    return 4;
+  } else if (behindObstacle) {
+    return 2;
+  } else {
+    return 0;
+  }
 }
+//testing
+// console.log("getCoverBonus: " + getCoverBonus(true, true)); // Output: 4
+// console.log("getCoverBonus: " + getCoverBonus(true, false)); // Output: 2
+// console.log("getCoverBonus: " + getCoverBonus(false, true)); // Output: 0
+// console.log("getCoverBonus: " + getCoverBonus(false, false)); // Output: 0
 
 /**
  * A creature's current hit points (HP) is reduced by taking damage.
